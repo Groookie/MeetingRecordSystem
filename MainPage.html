@@ -1,0 +1,78 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="icon.jpeg">
+    <title>Meeting Record System</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/grid/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/bootstrap-grid.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Meeting Records</h1>
+    <p class="lead">Welcome to our meeting recording system</p>
+
+    <form class="search form-inline" style="padding-bottom: 15px">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Location</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Organizer</th>
+            <th scope="col">Visiters</th>
+            <th scope="col">Visiters Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <script type="text/javascript">
+            function autoTable() {
+                var rows=document.getElementById('form1');
+                //添加属性
+                table.setAttribute('height',height+"px")
+                table.setAttribute('cellspacing',0+"px")
+                console.log('ddd')
+                //创建行和列
+                for(var i=0;i<rows;i++){
+                    //创建tr节点
+                    var tr=document.createElement('tr');
+                    for(var j=0;j<cols;j++){
+                        var td=document.createElement('td');
+                        //将td节点插入到tr中
+                        tr.appendChild(td);
+                    }
+                    //将tr节点插入到table中
+                    table.appendChild(tr);
+                }
+                document.getElementById('div').appendChild(table)
+            }
+        </script>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        </tbody>
+    </table>
+</div> <!-- /container -->
+</body>
+</html>

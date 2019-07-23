@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>自动生成表格</title>
+</head>
+<style type="text/css">
+    table tr td{
+        width: 100px;
+        border: 1px solid red;
+    }
+</style>
+<body>
+<form>
+    行数：<input type="number" id="rows"><br>
+    列数：<input type="number" id="cols"><br>
+    行高：<input type="number" id="height"><br>
+    <input type="button" value="提交" onclick="autoTable()">
+</form>
+<div id="div"></div>
+</body>
+<script type="text/javascript">
+    function autoTable() {
+        //创建table节点
+        var table=document.createElement('table');
+        //获取输入的行数，列数，行高
+        var cols=document.getElementById('cols').value;
+        var rows=document.getElementById('rows').value;
+        var height=document.getElementById('height').value;
+        //添加属性
+        table.setAttribute('height',height+"px")
+        table.setAttribute('cellspacing',0+"px")
+        console.log('ddd')
+        //创建行和列
+        for(var i=0;i<rows;i++){
+            //创建tr节点
+            var tr=document.createElement('tr');
+            for(var j=0;j<cols;j++){
+                var td=document.createElement('td');
+                //将td节点插入到tr中
+                tr.appendChild(td);
+            }
+            //将tr节点插入到table中
+            table.appendChild(tr);
+        }
+        document.getElementById('div').appendChild(table)
+    }
+</script>
+</html>
