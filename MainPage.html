@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -24,8 +25,12 @@
     <p class="lead">Welcome to our meeting recording system</p>
 
     <form class="search form-inline" style="padding-bottom: 15px">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input id="inputDate" class="form-control mr-sm-2" type="search" placeholder="Date" aria-label="Search">
+        <input id="inputStartTime"  class="form-control mr-sm-2" type="search" placeholder="StartTime" aria-label="Search">
+        <input id="inputSubject"  class="form-control mr-sm-2" type="search" placeholder="Subject" aria-label="Search">
+        <input id="inputOrganizer"  class="form-control mr-sm-2" type="search" placeholder="Organizer" aria-label="Search">
+        <input id="inputIndustry"  class="form-control mr-sm-2" type="search" placeholder="Industry" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="buttonsearch">Search</button>
     </form>
 
 
@@ -40,31 +45,12 @@
             <th scope="col">Organizer</th>
             <th scope="col">Visiters</th>
             <th scope="col">Visiters Number</th>
+
         </tr>
         </thead>
-        <tbody>
-        <script type="text/javascript">
-            function autoTable() {
-                var rows=document.getElementById('form1');
-                //添加属性
-                table.setAttribute('height',height+"px")
-                table.setAttribute('cellspacing',0+"px")
-                console.log('ddd')
-                //创建行和列
-                for(var i=0;i<rows;i++){
-                    //创建tr节点
-                    var tr=document.createElement('tr');
-                    for(var j=0;j<cols;j++){
-                        var td=document.createElement('td');
-                        //将td节点插入到tr中
-                        tr.appendChild(td);
-                    }
-                    //将tr节点插入到table中
-                    table.appendChild(tr);
-                }
-                document.getElementById('div').appendChild(table)
-            }
-        </script>
+
+        <tbody id="RecordTable">
+        <!---
         <tr>
             <th scope="row">1</th>
             <td>Mark</td>
@@ -72,7 +58,49 @@
             <td>@mdo</td>
         </tr>
         </tbody>
+      ---->
     </table>
 </div> <!-- /container -->
 </body>
+
+<script>
+    $("#buttonsearch").click(function(){
+        $.ajax({
+        async:true,
+        url: "http://86.86.1.235:5000/GetInfo",
+        success: function (result) {
+            console.log(result)
+            for(var v in result) {
+                console.log(v, result[v]);
+                $("#RecordTable").append(
+                    "<tr>"
+                    +"<td>"+result[v].Start.substr(0,10)+"</td>"
+                    +"<td>"+result[v].Start.substring(11,18)+"</td>"
+                    +"<td>"+result[v].End.substring(11,18)+"</td>"
+                    +"<td>"+result[v].Location+"</td>"
+                    +"<td>"+result[v].Subject+"</td>"
+                    +"<td>"+result[v].Orgnizer+"</td>"
+                    +"<td>"+result[v].NamesOfVistors+"</td>"
+                    +"<td>"+result[v].NumberOfVisitors+"</td>"
+                    +"</tr>");
+               /* $("#RecordTable").html(
+                    "<tr>"
+                    +"<td>"+result[v].Start.substr(0,10)+"</td>"
+                    +"<td>"+result[v].Start.substring(11,18)+"</td>"
+                    +"<td>"+result[v].End.substring(11,18)+"</td>"
+                    +"<td>"+result[v].Location+"</td>"
+                    +"<td>"+result[v].Subject+"</td>"
+                    +"<td>"+result[v].Orgnizer+"</td>"
+                    +"<td>"+result[v].NamesOfVistors+"</td>"
+                    +"<td>"+result[v].NumberOfVisitors+"</td>"
+                    +"</tr>"
+                );  */
+            }
+        },
+        error:function(XMLHttpRequest, textStatus){
+            
+        }
+    });
+    })
+</script>
 </html>
